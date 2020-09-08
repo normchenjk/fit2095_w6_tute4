@@ -74,7 +74,7 @@ app.get("/additem/:whId/:name/:sku/:cost/:quantity", function (req, res) {
 
 // Read items
 app.get("/getitems", function (req, res) {
-  Item.find(function (err, data) {
+  Item.find().populate('warehouse').exec(function (err, data) {
     data = JSON.stringify(data, null, 2);
     res.send("<pre>" + data + "</pre>");
   });
